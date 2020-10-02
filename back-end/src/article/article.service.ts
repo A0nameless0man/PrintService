@@ -16,7 +16,7 @@ export class ArticleService {
   }
 
   async getArticle(id: number): Promise<Article> {
-    let article = await this.articleRepository.findOne({ id: id });
+    const article = await this.articleRepository.findOne({ id: id });
     if (article !== undefined) {
       return article;
     } else {
@@ -26,7 +26,7 @@ export class ArticleService {
 
   async newArticle(article: ArticleDto): Promise<Article> {
     try {
-      let saveresult = await this.articleRepository.save(article);
+      const saveresult = await this.articleRepository.save(article);
       return saveresult;
     } catch (e) {
       throw new HttpException(JSON.stringify(e), 500);
@@ -34,7 +34,7 @@ export class ArticleService {
   }
 
   async updateArticle(article: ArticleDto, id: number): Promise<Article> {
-    let oldArticle = await this.articleRepository.findOne(id);
+    const oldArticle = await this.articleRepository.findOne(id);
     if (oldArticle !== undefined) {
       Object.assign(oldArticle, {
         title: article.title,
