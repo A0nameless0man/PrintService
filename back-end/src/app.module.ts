@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PostModule } from './post/post.module';
+import { ArticleModule } from './article/article.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from './config';
 @Module({
@@ -12,7 +12,7 @@ import { config } from './config';
         config.db,
       ),
     ),
-    PostModule,
+    ArticleModule,
   ],
   controllers: [AppController],
   providers: [AppService],

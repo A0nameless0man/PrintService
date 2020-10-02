@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Post {
+export class Article {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -35,9 +35,9 @@ export class Post {
       .addSelect('title')
       .addSelect('lastupdated')
       .addSelect('created')
-      .from(Post, 'post'),
+      .from(Article, 'article'),
 })
-export class PostBasic {
+export class ArticleBasic {
   @ViewColumn()
   id: number;
 
@@ -49,4 +49,9 @@ export class PostBasic {
 
   @ViewColumn()
   created: Date;
+}
+
+export class ArticleDto {
+  readonly title: string;
+  readonly content: string;
 }
