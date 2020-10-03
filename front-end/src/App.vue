@@ -31,23 +31,13 @@
                 <router-view />
             </a-layout-content>
             <a-layout-footer :style="{ textAlign: 'center' }">
-                <p>
+                <p v-for="rec in records" v-bind:key="rec.href">
                     <a
-                        href="http://www.beian.miit.gov.cn"
+                        :href="rec.href"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        鄂ICP备19010434号-1
-                    </a>
-                </p>
-
-                <p>
-                    <a
-                        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011202000257"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        苏公网安备 32011202000257号
+                        {{ rec.text }}
                     </a>
                 </p>
             </a-layout-footer>
@@ -79,6 +69,7 @@ export default
 class App extends Vue {
     currentMenu = ["Home"];
     articles = [];
+    records = config.other.records;
     async created() {
         this.articles = (
             await axios.get("/article/", {

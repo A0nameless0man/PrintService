@@ -20,7 +20,7 @@ const routes = [
     },
     {
         path: "/article/new",
-        name: "article",
+        name: "new article",
         component: () => import("../views/NewArticle.vue"),
         meta: { title: "New Article" }
     },
