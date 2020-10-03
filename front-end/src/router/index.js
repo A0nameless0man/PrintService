@@ -19,6 +19,12 @@ const routes = [
         meta: { title: "About" }
     },
     {
+        path: "/article/new",
+        name: "article",
+        component: () => import("../views/NewArticle.vue"),
+        meta: { title: "New Article" }
+    },
+    {
         path: "/article/:id",
         name: "article",
         component: () => import("../views/Article.vue"),

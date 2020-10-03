@@ -1,8 +1,10 @@
 <template>
     <div class="home">
-        <a-card v-bind:loading="loading" v-bind:title="title"
-            ><div v-html="compiledMarkdown"></div
-        ></a-card>
+        <markdown-render
+            v-bind:loading="loading"
+            v-bind:title="title"
+            v-bind:content="content"
+        />
     </div>
 </template>
 
@@ -10,12 +12,11 @@
 // import { Prop } from "vue-property-decorator";
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Card } from "ant-design-vue";
 import config from "@/config";
 import axios from "axios";
-import marked from "marked";
+import { MarkdownRender } from "@/components/MarkdownRender.vue";
 export default
-@Component({ components: { ACard: Card } })
+@Component({ components: { MarkdownRender } })
 class Article extends Vue {
     // article = { id: this.$route.params.id };
     article = {};
@@ -44,9 +45,6 @@ class Article extends Vue {
     }
     get title() {
         return this.article.title || "";
-    }
-    get compiledMarkdown() {
-        return marked(this.content);
     }
 }
 </script>

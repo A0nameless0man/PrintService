@@ -1,7 +1,10 @@
 <template>
     <div id="app">
         <a-layout>
-            <a-layout-header class="header">
+            <a-layout-header
+                class="header"
+                :style="{ position: 'fixed', zIndex: 1, width: '100%' }"
+            >
                 <a-menu theme="dark" v-model="currentMenu" mode="horizontal">
                     <a-menu-item key="Home">
                         <router-link to="/">Home</router-link>
@@ -24,7 +27,9 @@
                     </a-sub-menu>
                 </a-menu>
             </a-layout-header>
-            <a-layout-content><router-view /></a-layout-content>
+            <a-layout-content :style="{ marginTop: '70px' }">
+                <router-view />
+            </a-layout-content>
             <a-layout-footer :style="{ textAlign: 'center' }">
                 <p>
                     <a
