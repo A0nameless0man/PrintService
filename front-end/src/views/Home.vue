@@ -1,18 +1,19 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png" />
-        <HelloWorld msg="Welcome to Your Vue.js App" />
+        <a-avatar :src="avatarsrc"></a-avatar>
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Vue from "vue";
+import Component from "vue-class-component";
+import { Avatar } from "ant-design-vue";
+import config from "@/config";
 
-export default {
-    name: "Home",
-    components: {
-        HelloWorld
-    }
-};
+export default
+@Component({ components: { AAvatar: Avatar } })
+class Home extends Vue {
+    avatarsrc = config.assets.avatar.src;
+}
 </script>

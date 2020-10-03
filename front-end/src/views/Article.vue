@@ -6,21 +6,22 @@
 </template>
 
 <script>
-import { Prop } from "vue-property-decorator";
+// import { Prop } from "vue-property-decorator";
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Button } from "ant-design-vue";
-import config from "../config";
+import config from "@/config";
 import axios from "axios";
+export default
 @Component({ components: { AButton: Button } })
-export default class Article extends Vue {
+class Article extends Vue {
     // article = { id: this.$route.params.id };
     article = {};
     async created() {
         console.log(config.host.backend);
         this.article = (
             await axios.get("/article/" + this.$route.params.id, {
-                baseURL: "http://10.0.1.128:3000"
+                baseURL: config.host.backend
             })
         ).data;
     }
