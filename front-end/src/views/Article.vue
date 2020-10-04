@@ -1,7 +1,7 @@
 <template>
     <div class="home">
-        <div>{{ id }}</div>
-        <div>{{ this.$route.params.id }}</div>
+        <!-- <div>{{ id }}</div>
+        <div>{{ this.$route.params.id }}</div> -->
         <markdown-render
             v-bind:loading="loading"
             v-bind:title="title"
