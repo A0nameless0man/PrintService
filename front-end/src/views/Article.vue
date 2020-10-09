@@ -33,7 +33,6 @@ import { Button } from "ant-design-vue";
 import config from "@/config";
 import axios from "axios";
 import { MarkdownRender } from "@/components/MarkdownRender.vue";
-export default
 @Component({
     components: { MarkdownRender, AButton: Button, AButtonGroup: Button.Group }
 })
@@ -70,7 +69,6 @@ class Article extends Vue {
         let a = await axios.get("/article/" + id, {
             baseURL: config.host.backend
         });
-        console.log(a.data);
         return a.data;
     }
     afterLoad() {
@@ -97,4 +95,5 @@ class Article extends Vue {
         return this.article.title || "";
     }
 }
+export default Article;
 </script>

@@ -10,8 +10,6 @@ import { Prop } from "vue-property-decorator";
 import Component from "vue-class-component";
 import { Card } from "ant-design-vue";
 import marked from "marked";
-
-export default
 @Component({ components: { ACard: Card } })
 class MarkdownRender extends Vue {
     @Prop() title;
@@ -21,7 +19,7 @@ class MarkdownRender extends Vue {
         return marked(this.content);
     }
 }
-
+export default MarkdownRender;
 export { MarkdownRender };
 </script>
 

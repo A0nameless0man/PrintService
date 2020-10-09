@@ -24,7 +24,6 @@ import { Button } from "ant-design-vue";
 import { ArticleEditor } from "@/components/ArticleEditor.vue";
 import config from "@/config";
 import axios from "axios";
-export default
 @Component({ components: { ArticleEditor, AButton: Button } })
 class NewArticle extends Vue {
     article = { title: "New Article", content: "# Start" };
@@ -50,4 +49,5 @@ class NewArticle extends Vue {
         }
     }
 }
+export default NewArticle;
 </script>

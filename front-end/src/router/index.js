@@ -19,14 +19,20 @@ const routes = [
         meta: { title: "About" }
     },
     {
+        path: "/article",
+        name: "Article List",
+        component: () => import("../views/ArticleList.vue"),
+        meta: { title: "Articles" }
+    },
+    {
         path: "/article/new",
-        name: "new article",
+        name: "New Article",
         component: () => import("../views/NewArticle.vue"),
         meta: { title: "New Article" }
     },
     {
         path: "/article/:id",
-        name: "article",
+        name: "Article",
         component: () => import("../views/Article.vue"),
         meta: { title: "Article" }
     }

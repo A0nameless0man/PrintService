@@ -5,30 +5,27 @@
                 class="header"
                 :style="{ position: 'fixed', zIndex: 1, width: '100%' }"
             >
-                <a-menu theme="dark" v-model="currentMenu" mode="horizontal">
+                <a-menu
+                    theme="dark"
+                    mode="horizontal"
+                    :selectable="false"
+                >
                     <a-menu-item key="Home">
                         <router-link to="/">Home</router-link>
                     </a-menu-item>
                     <a-menu-item key="About">
                         <router-link to="/about">About</router-link>
                     </a-menu-item>
-                    <a-sub-menu>
-                        <span slot="title" class="submenu-title-wrapper">
-                            <a-icon type="book" />Articles
-                        </span>
-                        <a-menu-item
-                            v-for="article in articles"
-                            v-bind:key="article.id"
-                        >
-                            <router-link :to="'/article/' + article.id">
-                                {{ article.title }}
-                            </router-link>
-                        </a-menu-item>
-                    </a-sub-menu>
+                    <a-menu-item key="ArticleList">
+                        <router-link :to="'/article'">
+                            <a-icon type="book" />
+                            ArticleList
+                        </router-link>
+                    </a-menu-item>
                 </a-menu>
             </a-layout-header>
-            <a-layout-content :style="{ marginTop: '70px' }">
-                <router-view />
+            <a-layout-content :style="{ marginTop: '70px', padding: '0 10px' }">
+                <div><router-view /></div>
             </a-layout-content>
             <a-layout-footer :style="{ textAlign: 'center' }">
                 <p v-for="rec in records" v-bind:key="rec.href">
@@ -42,19 +39,18 @@
                 </p>
             </a-layout-footer>
         </a-layout>
-
         <div style="padding: 3px" />
     </div>
 </template>
 <script>
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Menu, Icon, Layout } from "ant-design-vue";
+import { Button, Menu, Icon, Layout } from "ant-design-vue";
+import { Article } from "@/util/Article";
 import config from "@/config";
-import axios from "axios";
-export default
 @Component({
     components: {
+        AButton: Button,
         AMenu: Menu,
         AMenuItem: Menu.Item,
         ASubMenu: Menu.SubMenu,
@@ -67,17 +63,10 @@ export default
     }
 })
 class App extends Vue {
-    currentMenu = ["Home"];
-    articles = [];
     records = config.other.records;
-    async created() {
-        this.articles = (
-            await axios.get("/article/", {
-                baseURL: config.host.backend
-            })
-        ).data;
-    }
 }
+
+export default App;
 </script>
 
 <style>
