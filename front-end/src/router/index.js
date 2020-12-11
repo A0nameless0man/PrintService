@@ -1,37 +1,29 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
-        name: "Home",
-        component: Home,
-        meta: { title: "Home" }
-    },
-    {
-        path: "/about",
-        name: "About",
-
-        component: () => import("../views/About.vue"),
-        meta: { title: "About" }
-    },
-    {
-        path: "/code",
         name: "Code List",
         component: () => import("../views/CodeList.vue"),
         meta: { title: "Codes" }
     },
     {
-        path: "/code/new",
+        path: "/login",
+        name: "Login",
+        component: () => import("../views/Login.vue"),
+        meta: { title: "Codes" }
+    },
+    {
+        path: "/new",
         name: "New Code",
         component: () => import("../views/NewCode.vue"),
         meta: { title: "New Code" }
     },
     {
-        path: "/code/:id",
+        path: "/:id",
         name: "Code",
         component: () => import("../views/Code.vue"),
         meta: { title: "Code" }

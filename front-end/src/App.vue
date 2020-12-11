@@ -5,39 +5,21 @@
                 class="header"
                 :style="{ position: 'fixed', zIndex: 1, width: '100%' }"
             >
-                <a-menu
-                    theme="dark"
-                    mode="horizontal"
-                    :selectable="false"
-                >
-                    <a-menu-item key="Home">
-                        <router-link to="/">Home</router-link>
-                    </a-menu-item>
-                    <a-menu-item key="About">
-                        <router-link to="/about">About</router-link>
-                    </a-menu-item>
-                    <a-menu-item key="ArticleList">
-                        <router-link :to="'/article'">
+                <a-menu theme="dark" mode="horizontal" :selectable="false">
+                    <!-- <a-menu-item key="CodeList">
+                        <router-link :to="'/code'">
                             <a-icon type="book" />
-                            ArticleList
+                            CodeList
                         </router-link>
-                    </a-menu-item>
+                    </a-menu-item> -->
                 </a-menu>
             </a-layout-header>
             <a-layout-content :style="{ marginTop: '70px', padding: '0 10px' }">
                 <div><router-view /></div>
             </a-layout-content>
             <a-layout-footer :style="{ textAlign: 'center' }">
-                <p v-for="rec in records" v-bind:key="rec.href">
-                    <a
-                        :href="rec.href"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        {{ rec.text }}
-                    </a>
-                </p>
-            </a-layout-footer>
+                <p v-for="rec in records" v-bind:key="rec.href"></p
+            ></a-layout-footer>
         </a-layout>
         <div style="padding: 3px" />
     </div>
@@ -46,8 +28,9 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Button, Menu, Icon, Layout } from "ant-design-vue";
-import { Article } from "@/util/Article";
+import { Code } from "@/util/Code";
 import config from "@/config";
+import Cookies from "js-cookie";
 @Component({
     components: {
         AButton: Button,
@@ -63,7 +46,17 @@ import config from "@/config";
     }
 })
 class App extends Vue {
-    records = config.other.records;
+    checkLogin() {
+        if (!Cookies.get("session")) {
+            this.$router.push("/login");
+        }
+    }
+    created() {
+        this.checkLogin();
+    }
+    beforeRouteUpdate(to, from, next) {
+        this.checkLogin();
+    }
 }
 
 export default App;

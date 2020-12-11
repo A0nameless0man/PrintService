@@ -7,10 +7,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 
+import { User } from './user.entity';
+
 @Entity()
-export class Article {
+export class Code {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,6 +22,15 @@ export class Article {
 
   @Column()
   title: string;
+
+  @Column()
+  author: string;
+
+  @ManyToOne(
+    type => User,
+    user => user.codes,
+  )
+  user: User;
 
   @UpdateDateColumn()
   lastupdated: Date;
@@ -35,9 +47,9 @@ export class Article {
       .addSelect('title')
       .addSelect('lastupdated')
       .addSelect('created')
-      .from(Article, 'article'),
+      .from(Code, 'code'),
 })
-export class ArticleBasic {
+export class CodeBasic {
   @ViewColumn()
   id: number;
 
@@ -51,7 +63,7 @@ export class ArticleBasic {
   created: Date;
 }
 
-export class ArticleDto {
+export class CodeDto {
   readonly title: string;
   readonly content: string;
 }

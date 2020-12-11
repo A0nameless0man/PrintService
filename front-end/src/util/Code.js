@@ -1,10 +1,10 @@
 import config from "@/config";
 import axios from "axios";
 
-// export default async function loadArticleList() {
-//     // console.log("loading article list,", config.host);
+// export default async function loadCodeList() {
+//     // console.log("loading code list,", config.host);
 //     const data = (
-//         await axios.get("/article/", {
+//         await axios.get("/code/", {
 //             baseURL: config.host.backend
 //         })
 //     ).data;
@@ -13,25 +13,25 @@ import axios from "axios";
 //     return data;
 // }
 
-export let Article = {
-    async loadArticleList() {
-        // console.log("loading article list,", config.host);
+export let Code = {
+    async loadCodeList() {
+        // console.log("loading code list,", config.host);
         const data = (
-            await axios.get("/article/", {
+            await axios.get("/code/", {
                 baseURL: config.host.backend
             })
         ).data;
         return data;
     },
-    async getArticle(id) {
-        let a = await axios.get("/article/" + id, {
+    async getCode(id) {
+        let a = await axios.get("/code/" + id, {
             baseURL: config.host.backend
         });
         // console.log(a.data);
         return a.data;
     },
-    async deleteArticle(id) {
-        let delRes = await axios.delete("/article/" + this.id, {
+    async deleteCode(id) {
+        let delRes = await axios.delete("/code/" + this.id, {
             baseURL: config.host.backend
         });
         return delRes;

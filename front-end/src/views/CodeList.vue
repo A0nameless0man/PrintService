@@ -1,14 +1,14 @@
 <template>
     <a-layout>
         <a-layout-content>
-            <a-list v-bind:data-source="articles">
-                <template v-slot:renderItem="article">
+            <a-list v-bind:data-source="codes">
+                <template v-slot:renderItem="code">
                     <a-list-item>
                         <a-list-item-meta>
                             <template v-slot:title>
                                 <a-card>
-                                    <router-link :to="'/article/' + article.id">
-                                        {{ article.title }}
+                                    <router-link :to="'/code/' + code.id">
+                                        {{ code.title }}
                                     </router-link>
                                 </a-card>
                             </template>
@@ -20,11 +20,11 @@
         <a-layout-footer>
             <a-button-group>
                 <a-button type="primary">
-                    <router-link :to="'/article/new'">
+                    <router-link :to="'/new'">
                         <a-icon type="edit" /> New
                     </router-link>
                 </a-button>
-                <a-button type="" v-on:click="loadArticleList">
+                <a-button type="" v-on:click="loadCodeList">
                     <a-icon type="reload" />RelaodList
                 </a-button>
             </a-button-group>
@@ -36,7 +36,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Button, Card, Icon, Layout, List } from "ant-design-vue";
-import { Article } from "@/util/Article";
+import { Code } from "@/util/Code";
 
 @Component({
     components: {
@@ -52,15 +52,15 @@ import { Article } from "@/util/Article";
         AListItemMeta: List.Item.Meta
     }
 })
-class ArticleList extends Vue {
-    articles = [];
+class CodeList extends Vue {
+    codes = [];
     async created() {
-        this.loadArticleList();
+        this.loadCodeList();
     }
-    async loadArticleList() {
-        this.articles = await Article.loadArticleList();
+    async loadCodeList() {
+        this.codes = await Code.loadCodeList();
     }
 }
 
-export default ArticleList;
+export default CodeList;
 </script>

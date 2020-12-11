@@ -12,13 +12,13 @@
             <a-button
                 type="danger"
                 v-if="!deleteConfirm"
-                v-on:click="deleteArticle"
+                v-on:click="deleteCode"
                 >Delete</a-button
             >
             <a-button
                 type="danger"
                 v-if="deleteConfirm"
-                v-on:click="deleteArticle"
+                v-on:click="deleteCode"
                 >Realy?</a-button
             >
         </a-button-group>
@@ -36,10 +36,10 @@ import { MarkdownRender } from "@/components/MarkdownRender.vue";
 @Component({
     components: { MarkdownRender, AButton: Button, AButtonGroup: Button.Group }
 })
-class Article extends Vue {
-    // article = { id: this.$route.params.id };
+class Code extends Vue {
+    // code = { id: this.$route.params.id };
     id = "";
-    article = {};
+    code = {};
     loading = true;
     deleteConfirm = false;
     created() {
@@ -53,10 +53,10 @@ class Article extends Vue {
     async fullLoad() {
         try {
             this.beforeLoad();
-            this.article = await this.loadArticle(this.id);
+            this.code = await this.loadCode(this.id);
         } catch (e) {
             console.log(e);
-            this.article = { title: "Error", content: "# 加载失败" };
+            this.code = { title: "Error", content: "# 加载失败" };
         }
         this.afterLoad();
     }
@@ -64,36 +64,36 @@ class Article extends Vue {
         this.id = this.$route.params.id;
         this.loading = true;
     }
-    async loadArticle(id) {
+    async loadCode(id) {
         this.loading = true;
-        let a = await axios.get("/article/" + id, {
+        let a = await axios.get("/code/" + id, {
             baseURL: config.host.backend
         });
         return a.data;
     }
     afterLoad() {
-        document.title = this.article.title;
+        document.title = this.code.title;
         this.loading = false;
     }
-    async deleteArticle() {
+    async deleteCode() {
         if (!this.deleteConfirm) {
             this.deleteConfirm = true;
             setTimeout(() => (this.deleteConfirm = false), 1000);
         } else {
-            let delRes = await axios.delete("/article/" + this.id, {
+            let delRes = await axios.delete("/code/" + this.id, {
                 baseURL: config.host.backend
             });
             if (delRes.status == 200) {
-                this.$router.replace("/article");
+                this.$router.replace("/code");
             }
         }
     }
     get content() {
-        return this.article.content || "";
+        return this.code.content || "";
     }
     get title() {
-        return this.article.title || "";
+        return this.code.title || "";
     }
 }
-export default Article;
+export default Code;
 </script>
