@@ -1,7 +1,8 @@
 {
     "private": true,
     "workspaces": [
-        "back-end/*"
+        "back-end/*",
+        "front-end/*"
     ],
     "dependencies": {
         "@vue/cli": "^4.5.6",

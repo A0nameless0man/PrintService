@@ -19,22 +19,22 @@ const routes = [
         meta: { title: "About" }
     },
     {
-        path: "/article",
-        name: "Article List",
-        component: () => import("../views/ArticleList.vue"),
-        meta: { title: "Articles" }
+        path: "/code",
+        name: "Code List",
+        component: () => import("../views/CodeList.vue"),
+        meta: { title: "Codes" }
     },
     {
-        path: "/article/new",
-        name: "New Article",
-        component: () => import("../views/NewArticle.vue"),
-        meta: { title: "New Article" }
+        path: "/code/new",
+        name: "New Code",
+        component: () => import("../views/NewCode.vue"),
+        meta: { title: "New Code" }
     },
     {
-        path: "/article/:id",
-        name: "Article",
-        component: () => import("../views/Article.vue"),
-        meta: { title: "Article" }
+        path: "/code/:id",
+        name: "Code",
+        component: () => import("../views/Code.vue"),
+        meta: { title: "Code" }
     }
 ];
 

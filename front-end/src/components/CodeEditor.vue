@@ -1,14 +1,14 @@
 <template>
-    <div class="article-editor">
+    <div class="code-editor">
         <a-input
             allow-clear
-            v-bind:value="article.title"
+            v-bind:value="code.title"
             v-on:input="e => updateTitle(e.target.value)"
         />
         <markdown-editor
             v-bind:loading="loading"
-            v-bind:title="article.title"
-            v-bind:content="article.content"
+            v-bind:title="code.title"
+            v-bind:content="code.content"
             v-on:update="updateContent"
         />
     </div>
@@ -23,27 +23,27 @@ import { MarkdownEditor } from "@/components/MarkdownEditor.vue";
 
 export default
 @Component({ components: { MarkdownEditor, AInput: Input } })
-class ArticleEditor extends Vue {
-    @Prop() article;
+class CodeEditor extends Vue {
+    @Prop() code;
     @Prop() loading;
-    logedArticle = {};
+    logedCode = {};
 
     created() {
-        this.logedArticle = this.article;
+        this.logedCode = this.code;
     }
 
     update() {
-        this.$emit("update", this.logedArticle);
+        this.$emit("update", this.logedCode);
     }
     updateContent(content) {
-        this.logedArticle.content = content;
+        this.logedCode.content = content;
         this.update();
     }
     updateTitle(title) {
-        this.logedArticle.title = title;
+        this.logedCode.title = title;
         this.update();
     }
 }
 
-export { ArticleEditor };
+export { CodeEditor };
 </script>
